@@ -1,3 +1,6 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        return not collections.Counter(ransomNote) - collections.Counter(magazine)
+        for c in set(ransomNote):
+            if ransomNote.count(c) > magazine.count(c):
+                return False
+        return True
