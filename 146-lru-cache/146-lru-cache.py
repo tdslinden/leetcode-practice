@@ -1,53 +1,55 @@
-class Node:
+class ListNode:
     def __init__(self, key, value):
-        self.key, self.val = key, value
-        self.prev = self.next = None
-        
+        self.key = key
+        self.value = value
+        self.prev = None
+        self.next = None
+
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.cap = capacity
-        self.cache = {} # map the key to point to the node
-        
-        # left=LRU, right = MRU
-        self.left, self.right = Node(0, 0), Node(0, 0)
-        self.left.next, self.right.prev = self.right, self.left
+        self.dic = dict() # key to node
+        self.capacity = capacity
+        self.head = ListNode(0, 0)
+        self.tail = ListNode(-1, -1)
+        self.head.next = self.tail
+        self.tail.prev = self.head
 
-    def remove(self, node):
-        prev = node.prev
-        nxt = node.next
-        prev.next = nxt
-        nxt.prev = prev
-    
-    # insert from right
-    def insert(self, node):            
-        old_last = self.right.prev
-        self.right.prev = node
-        old_last.next = node
-        node.next = self.right
-        node.prev = old_last
-        
     def get(self, key: int) -> int:
-        if key not in self.cache:
+        if key in self.dic:
+            node = self.dic[key]
+            self.removeFromList(node)
+            self.insertIntoHead(node)
+            return node.value
+        else:
             return -1
-        
-        self.remove(self.cache[key])
-        self.insert(self.cache[key])
-        return self.cache[key].val        
 
     def put(self, key: int, value: int) -> None:
-        if key in self.cache:
-            self.remove(self.cache[key])
-        
-        self.cache[key] = Node(key, value)
-        self.insert(self.cache[key])
-        
-        if len(self.cache) > self.cap:
-            lru = self.left.next
-            self.remove(lru)
-            del self.cache[lru.key]
-
-# Your LRUCache object will be instantiated and called as such:
-# obj = LRUCache(capacity)
-# param_1 = obj.get(key)
-# obj.put(key,value)
+        if key in self.dic:             # similar to get()        
+            node = self.dic[key]
+            self.removeFromList(node)
+            self.insertIntoHead(node)
+            node.value = value         # replace the value len(dic)
+        else: 
+            if len(self.dic) >= self.capacity:
+                self.removeFromTail()
+            node = ListNode(key,value)
+            self.dic[key] = node
+            self.insertIntoHead(node)
+			
+    def removeFromList(self, node):
+        node.prev.next = node.next
+        node.next.prev = node.prev
+    
+    def insertIntoHead(self, node):
+        headNext = self.head.next 
+        self.head.next = node 
+        node.prev = self.head 
+        node.next = headNext 
+        headNext.prev = node
+    
+    def removeFromTail(self):
+        if len(self.dic) == 0: return
+        tail_node = self.tail.prev
+        del self.dic[tail_node.key]
+        self.removeFromList(tail_node)
