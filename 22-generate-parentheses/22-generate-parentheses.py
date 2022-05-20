@@ -3,10 +3,9 @@ class Solution:
         # only add ( if # open < n
         # only add ) if # closed < open
         
-        res = []
         maxCount = 2*n
         
-        def backtrack(openCount, closeCount, builder):
+        def backtrack(openCount, closeCount, builder, res=[]):
             if len(builder) == maxCount:
                 res.append(builder)
                 return
@@ -17,5 +16,7 @@ class Solution:
             if closeCount < openCount:
                 backtrack(openCount, closeCount + 1, builder + ")")
             
-        backtrack(0, 0, "")
-        return res
+            if openCount == closeCount:
+                return res
+    
+        return backtrack(0, 0, "")
