@@ -3,23 +3,19 @@ class Solution:
         # only add ( if # open < n
         # only add ) if # closed < open
         
-        stack = []
         res = []
+        maxCount = 2*n
         
-        def backtrack(openCount, closeCount):
-            if openCount == closeCount == n:
-                res.append("".join(stack))
+        def backtrack(openCount, closeCount, builder):
+            if len(builder) == maxCount:
+                res.append(builder)
                 return
             
             if openCount < n:
-                stack.append("(")
-                backtrack(openCount + 1, closeCount)
-                stack.pop()
+                backtrack(openCount + 1, closeCount, builder + "(")
             
             if closeCount < openCount:
-                stack.append(")")
-                backtrack(openCount, closeCount + 1)
-                stack.pop()
+                backtrack(openCount, closeCount + 1, builder + ")")
             
-        backtrack(0,0)
+        backtrack(0, 0, "")
         return res
