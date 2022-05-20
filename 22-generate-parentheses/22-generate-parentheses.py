@@ -1,22 +1,8 @@
 class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
-        # only add ( if # open < n
-        # only add ) if # closed < open
-        
-        maxCount = 2*n
-        
-        def backtrack(openCount, closeCount, builder, res=[]):
-            if len(builder) == maxCount:
-                res.append(builder)
-                return
-            
-            if openCount < n:
-                backtrack(openCount + 1, closeCount, builder + "(")
-            
-            if closeCount < openCount:
-                backtrack(openCount, closeCount + 1, builder + ")")
-            
-            if openCount == closeCount:
-                return res
-    
-        return backtrack(0, 0, "")
+    def generateParenthesis(self, n):
+        def generate(p, left, right, parens=[]):
+            if left:         generate(p + '(', left-1, right)
+            if right > left: generate(p + ')', left, right-1)
+            if not right:    parens += p,
+            return parens
+        return generate('', n, n)
