@@ -22,11 +22,6 @@ class Solution {
             } else if (min < nums[start]) {
                 end = mid - 1;
             } else {
-                // if (nums[end] < nums[start]) {
-                //     start = mid + 1;
-                // } else {
-                //     end = mid - 1;
-                // }
                 end = mid - 1;
             }
         }
