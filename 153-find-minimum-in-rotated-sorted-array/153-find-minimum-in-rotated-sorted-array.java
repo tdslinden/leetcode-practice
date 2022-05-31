@@ -17,9 +17,9 @@ class Solution {
                 min = nums[mid];
             }
 
-            if (min > nums[start] && min > nums[end]) {
+            if (min > nums[end]) {
                 start = mid + 1;
-            } else if (min < nums[start] && min < nums[end]) {
+            } else if (min < nums[start]) {
                 end = mid - 1;
             } else {
                 if (nums[end] < nums[start]) {
