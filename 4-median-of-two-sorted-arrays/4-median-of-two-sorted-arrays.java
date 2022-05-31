@@ -3,11 +3,8 @@ class Solution {
         int length1 = nums1.length;
         int length2 = nums2.length;
         int total = length1 + length2;
-        int[] merged = new int[total];
         
-        Boolean isEven = !isOdd(length1, length2, total);
-        
-        return getMedian(nums1, nums2, merged, length1, length2, total, isEven);
+        return getMedian(nums1, nums2, length1, length2, total);
     }
     
     public boolean isOdd(int length1, int length2, int total) {
@@ -17,11 +14,12 @@ class Solution {
         return false;
     }
     
-    public double getMedian(int[] nums1, int[] nums2, int[] merged, int length1, int length2, int total, Boolean isEven) {
+    public double getMedian(int[] nums1, int[] nums2, int length1, int length2, int total) {
         int left = 0;
         int right = 0;
         int pos = 0;
         int max = total / 2;
+        int[] merged = new int[total];
         
         while (left < length1 && right < length2 && pos <= max) {
             if (nums1[left] < nums2[right]) {
@@ -39,6 +37,7 @@ class Solution {
             merged[pos++] = nums2[right++];
         }
         
+        Boolean isEven = !isOdd(length1, length2, total);
         double median = 0;
         if (isEven) {
             median = (double) (merged[max] + merged[max - 1]) / 2;
