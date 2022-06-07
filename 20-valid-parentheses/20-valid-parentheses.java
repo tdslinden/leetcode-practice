@@ -12,18 +12,19 @@ class Solution {
                     return false;
                 }
                 
-                if (c == ')' && stack.peek() != '(') {
+                char closing = stack.pop();
+                
+                if (c == ')' && closing != '(') {
                     return false;
                 }
                 
-                if (c == ']' && stack.peek() != '[') {
+                if (c == ']' && closing != '[') {
                     return false;
                 }
                 
-                if (c == '}' && stack.peek() != '{') {
+                if (c == '}' && closing != '{') {
                     return false;
                 }
-                stack.pop();
             }
         }
         
