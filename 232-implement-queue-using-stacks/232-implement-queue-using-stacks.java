@@ -8,11 +8,11 @@ class MyQueue {
         ready = new ArrayDeque<>();
     }
     
-    public void push(int x) {
+    public void push(int x) {        
         if (ready.size() == 0 && queued.size() == 0) {
             ready.push(x);
         } else {
-            queued.push(x);   
+            queued.push(x);      
         }
     }
     
@@ -21,7 +21,7 @@ class MyQueue {
             while(queued.peek() != null) {
                 ready.push(queued.pop());
             }
-        }
+        } 
         return ready.pop();
     }
     
@@ -30,7 +30,7 @@ class MyQueue {
             while(queued.peek() != null) {
                 ready.push(queued.pop());
             }
-        }
+        } 
         return ready.peek();
     }
     
