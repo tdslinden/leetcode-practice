@@ -22,10 +22,15 @@ class MinStack {
     public void pop() {
         if (length != 0) {
             int removed = stack.get(length - 1);
+            stack.remove(length - 1);
             if (min == removed) {
                 min = Integer.MAX_VALUE;
+                for (int num : stack) {
+                    if (num < min) {
+                        min = num;
+                    }
+                }
             }
-            stack.remove(length - 1);
             length--;
         }
     }
@@ -38,11 +43,6 @@ class MinStack {
     }
     
     public int getMin() {
-        for (int num : stack) {
-            if (num < min) {
-                min = num;
-            }
-        }
         return min;
     }
 }
