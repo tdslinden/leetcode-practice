@@ -17,11 +17,7 @@ class MyQueue {
     }
     
     public int pop() {
-        if (ready.size() == 0 && queued.size() >= 1) {
-            while(queued.peek() != null) {
-                ready.push(queued.pop());
-            }
-        } 
+        peek();
         return ready.pop();
     }
     
