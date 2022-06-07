@@ -14,10 +14,8 @@ class MinStack {
         stack.add(val);
         length++;
         
-        for (int num : stack) {
-           if (num < min) {
-               min = num;
-           }
+        if (val < min) {
+            min = val;
         }
     }
     
