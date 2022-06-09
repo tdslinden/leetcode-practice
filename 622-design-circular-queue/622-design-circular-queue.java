@@ -1,19 +1,23 @@
 class MyCircularQueue {
+    final int[] arr;
+    private int front = 0;
+    private int rear = -1;
+    private int length = 0;
+    private int capacity = 0;
 
-    private Deque<Integer> queue;
-    private int capacity;
-    
     public MyCircularQueue(int k) {
-        queue = new ArrayDeque<>(k);
+        arr = new int[k];
         capacity = k;
     }
     
     public boolean enQueue(int value) {
-        if (queue.size() == capacity) {
+        if (length == capacity) {
             return false;
         }
         
-        queue.addLast(value);
+        rear = (rear + 1) % capacity;
+        arr[rear] = value;
+        length++;
         return true;
     }
     
@@ -21,7 +25,9 @@ class MyCircularQueue {
         if (isEmpty()) {
             return false;
         }
-        queue.removeFirst();
+        
+        front = (front + 1) % capacity;
+        length--;
         return true;
     }
     
@@ -29,22 +35,22 @@ class MyCircularQueue {
         if (isEmpty()) {
             return -1;
         }
-        return queue.getFirst();
+        return arr[front];
     }
     
     public int Rear() {
         if (isEmpty()) {
             return -1;
         }
-        return queue.getLast();
+        return arr[rear];
     }
     
     public boolean isEmpty() {
-        return queue.isEmpty();
+        return length == 0;
     }
     
     public boolean isFull() {
-        return queue.size() == capacity;
+        return length == capacity;
     }
 }
 
