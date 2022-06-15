@@ -18,18 +18,8 @@ class Solution {
         if (root == null) {
             return 0;
         } 
-        
-        int counter = 0;
-         
-        return traverse(root, counter);
-    }
-    
-    public int traverse(TreeNode root, int counter) {
-        if (root == null) {
-            return counter;
-        }
-        
-        return Math.max(traverse(root.left, counter + 1), traverse(root.right, counter + 1));
+                 
+        return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
     }
 }
 
