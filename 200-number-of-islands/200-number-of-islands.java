@@ -24,12 +24,12 @@ class Solution {
         }
         
         // check bottom
-        if (row + 1< grid.length && grid[row+1][col] == '1' && visited[row+1][col] == 0) {
+        if (row < grid.length - 1 && grid[row+1][col] == '1' && visited[row+1][col] == 0) {
             dfs(grid, visited, row+1, col);
         }
         
         // check right
-        if (col + 1 < grid[0].length && grid[row][col+1] == '1' && visited[row][col+1] == 0) {
+        if (col < grid[0].length - 1 && grid[row][col+1] == '1' && visited[row][col+1] == 0) {
             dfs(grid, visited, row, col+1);
         }        
         
