@@ -1,8 +1,5 @@
 class Solution {
     public int[][] kClosest(int[][] points, int k) {
-        // just need to compare each point with the origin
-        // if k is full, drop the last value since first value should be min
-        
         PriorityQueue<int[]> pq = new PriorityQueue<>(new Comparator<int[]>() {
             @Override
             public int compare(int[] a, int[] b) {
@@ -13,17 +10,22 @@ class Solution {
             }
         });
         
+        int size = 0;
+        
         for (int[] point : points) {
             pq.offer(point);
-            if (pq.size() > k) {
+            size++;
+            if (size > k) {
                 pq.poll();                
+                size--;
             }
         }
         
         int[][] ans = new int[k][2];
         int i = 0;
-        while (pq.size() > 0) {
+        while (size > 0) {
             ans[i++] = pq.poll();
+            size--;
         }
         
         return ans;
