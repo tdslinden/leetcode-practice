@@ -6,7 +6,7 @@ class Solution {
 
                 int aDistance = getDistance(a);
                 int bDistance = getDistance(b);
-                return Integer.compare(bDistance, aDistance);
+                return bDistance - aDistance;
             }
         });
         
