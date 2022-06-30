@@ -4,9 +4,9 @@ class Solution {
             @Override
             public int compare(int[] a, int[] b) {
 
-                double aDistance = (Math.pow(a[0], 2) + Math.pow(a[1], 2));
-                double bDistance = (Math.pow(b[0], 2) + Math.pow(b[1], 2));
-                return Double.compare(bDistance, aDistance);
+                int aDistance = getDistance(a);
+                int bDistance = getDistance(b);
+                return Integer.compare(bDistance, aDistance);
             }
         });
         
@@ -28,5 +28,9 @@ class Solution {
         }
         
         return ans;
+    }
+    
+    private int getDistance(int [] point) {
+        return point[0] * point[0] + point[1] * point[1];
     }
 }
