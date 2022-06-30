@@ -23,9 +23,8 @@ class Solution {
         
         int[][] ans = new int[k][2];
         int i = 0;
-        while (size > 0) {
+        while (k-- > 0) {
             ans[i++] = pq.poll();
-            size--;
         }
         
         return ans;
