@@ -14,17 +14,14 @@ class Solution {
         });
         
         for (int[] point : points) {
-            if (pq.size() < k) {
-                pq.offer(point);
-            } else {
-                pq.offer(point);
-                pq.poll();
+            pq.offer(point);
+            if (pq.size() > k) {
+                pq.poll();                
             }
         }
         
         int[][] ans = new int[k][2];
         int i = 0;
-        
         while (pq.size() > 0) {
             ans[i++] = pq.poll();
         }
