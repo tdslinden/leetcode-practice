@@ -40,7 +40,7 @@ class WordDictionary {
                 return false;
             }
             node = node.children[c - 'a'];
-            if (node==null) {
+            if (node == null) {
                 return false;
             }
         }
