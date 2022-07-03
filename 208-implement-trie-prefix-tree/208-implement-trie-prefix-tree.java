@@ -15,10 +15,11 @@ class Trie {
         TrieNode current = root;
         
         for (char c : word.toCharArray()) { 
-            if (current.children[c - 97] == null) {
-                current.children[c - 97] = new TrieNode();
+            int pos = c - 97;
+            if (current.children[pos] == null) {
+                current.children[pos] = new TrieNode();
             }
-            current = current.children[c - 97];
+            current = current.children[pos];
         }
         
         current.isWord = true;
@@ -27,10 +28,11 @@ class Trie {
     public boolean search(String word) {
         TrieNode current = root;
         for (char c : word.toCharArray()) { 
-            if (current.children[c - 97] == null) {
+            int pos = c - 97;
+            if (current.children[pos] == null) {
                 return false;
             }
-            current = current.children[c - 97];
+            current = current.children[pos];
         }
         return current.isWord;
     }
@@ -38,10 +40,11 @@ class Trie {
     public boolean startsWith(String prefix) {
         TrieNode current = root;
         for (char c : prefix.toCharArray()) { 
-            if (current.children[c - 97] == null) {
+            int pos = c - 97;
+            if (current.children[pos] == null) {
                 return false;
             }
-            current = current.children[c - 97];
+            current = current.children[pos];
         }
         return true;
     }
