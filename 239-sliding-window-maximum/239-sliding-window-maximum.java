@@ -1,29 +1,25 @@
 class Solution {
-    public int[] maxSlidingWindow(int[] nums, int k) {
-        // 1. Use a deque to store the indexes and make sure head has the largest number
-        // 2. For each incoming element, we first check whether it's bigger than the nums[last element] of dq. If so, continue to remove nums[last element] of dq
-        // 3. Check each head element to see if they are >= (end - k + 1) range. If not, remove head
-        // 4. If end + 1 >= k, we update the result using nums[deque.peekFirst()] as head is always the big number's index
-
-        Deque<Integer> deque = new ArrayDeque<>();
-        int index = 0;
-        int[] result = new int[nums.length - k + 1];
-        
-        for (int end = 0; end < nums.length; end++) { 
-            int cur = nums[end];
-            while (!deque.isEmpty() && nums[deque.peekLast()] < cur) { 
-                deque.removeLast();
+    public int[] maxSlidingWindow(int[] a, int k) {		
+        int n = a.length;
+        int[] r = new int[n-k+1];
+        int ri = 0;
+        // store index
+        Deque<Integer> q = new ArrayDeque<>();
+        for (int i = 0; i < a.length; i++) {
+            // remove numbers out of range k
+            while (!q.isEmpty() && q.peek() < i - k + 1) {
+                q.poll();
             }
-            while (!deque.isEmpty() && deque.peekFirst() < end - k + 1) { 
-                deque.removeFirst();
+            // remove smaller numbers in k range as they are useless
+            while (!q.isEmpty() && a[q.peekLast()] < a[i]) {
+                q.pollLast();
             }
-            deque.addLast(end);
-            
-            if (end + 1 >= k) { //
-                result[index++] = nums[deque.peekFirst()];
+            // q contains index... r contains content
+            q.offer(i);
+            if (i >= k - 1) {
+                r[ri++] = a[q.peek()];
             }
         }
-        
-        return result;
+        return r;
     }
 }
