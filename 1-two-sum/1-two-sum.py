@@ -11,9 +11,11 @@ class Solution:
             
             difference = target - num
             
-            if (map.get(difference) != None and map.get(difference) != i):
+            index = map.get(difference)
+            
+            if (index != None and index != i):
                 ans.append(i)
-                ans.append(map.get(difference))
+                ans.append(index)
                 return ans
             
         return ans
