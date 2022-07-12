@@ -8,9 +8,7 @@ class Solution {
         String clean = "";
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if (c >= '0' && c <= '9') {
-                clean += c;
-            } else if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
                 clean += Character.toLowerCase(c);
             }
         }    
