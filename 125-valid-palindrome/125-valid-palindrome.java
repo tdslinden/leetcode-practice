@@ -4,16 +4,17 @@ class Solution {
             return true;
         }
         
+        s = s.toLowerCase();
+        
         // remove all non-alphanumeric characters
         String clean = "";
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                clean += Character.toLowerCase(c);
+                clean += c;
             }
         }    
         
-        System.out.println(clean);
         
         for (int f = 0, r = clean.length() - 1; f < r; f++, r--) {
             char fc = clean.charAt(f);
