@@ -1,19 +1,23 @@
 class Solution {
     public int search(int[] nums, int target) {
-        int start = 0;
-        int end = nums.length;
+        int right = nums.length - 1;
+        int left = 0;
         
-        while (start < end) {
-            int mid = (start + end) / 2;
-            if (target == nums[mid]) {
-                return mid;
-            } else if (target < nums[mid]) {
-                end = mid;
-            } else {
-                start = mid + 1;
-            }
-        }
+        return binarySearch(nums, left, right, target);
+    }
+    
+    public int binarySearch(int[] nums, int left, int right, int target) {
+        int mid = (right + left) / 2;
         
-        return -1;
+        
+        if (target == nums[mid]) {
+            return mid;
+        } else if (left == right) {
+            return -1;
+        } else if (target > nums[mid]) {
+            return binarySearch(nums, mid+1, right, target);
+        } else {
+            return binarySearch(nums, left, mid, target);
+        }    
     }
 }
