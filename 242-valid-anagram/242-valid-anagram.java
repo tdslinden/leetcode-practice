@@ -4,21 +4,21 @@ class Solution {
             return false;
         }
         
-        HashMap<Character, Integer> map = new HashMap<>();
+        int[] arr = new int[256];
         
         for (char c : s.toCharArray()) {
-            map.put(c, map.getOrDefault(c, 0) + 1);
+            arr[c] = arr[c] + 1;
         }
         
         for (char c : t.toCharArray()) {
             // iterate through the t array
             // check if each letter in String is in Map
             
-            int value = map.getOrDefault(c, 0);
-            if (value == 0) {
+            int value = arr[c];
+            if (value <= 0) {
                 return false;
             } else {
-                map.put(c, --value);
+               arr[c]--;
             }
         }
         
