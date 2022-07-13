@@ -7,17 +7,16 @@ class Solution {
     }
     
     public int binarySearch(int[] nums, int left, int right, int target) {        
+        if(left > right) return -1;
         int mid = (right + left) / 2;
         
         
         if (target == nums[mid]) {
             return mid;
-        } else if (left == right) {
-            return -1;
         } else if (target > nums[mid]) {
             return binarySearch(nums, mid+1, right, target);
         } else {
-            return binarySearch(nums, left, mid, target);
+            return binarySearch(nums, left, mid-1, target);
         }    
     }
 }
