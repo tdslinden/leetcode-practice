@@ -19,17 +19,19 @@ class Solution {
             return null;
         }
         
-        swap(root);
-        invertTree(root.left);
-        invertTree(root.right);
-            
-        return root;
-        
-    }
-    
-    public void swap(TreeNode root) {
+        // do the swapping
         TreeNode temp = root.left;
         root.left = root.right;
-        root.right = temp;
+        root.right = temp;   
+        
+        if (root.left != null) {
+            invertTree(root.left);
+        }
+        
+        if (root.right != null) {
+            invertTree(root.right);
+        }
+        
+        return root;
     }
 }
