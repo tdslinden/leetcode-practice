@@ -19,18 +19,11 @@ class Solution {
             return null;
         }
         
-        // do the swapping
-        TreeNode temp = root.left;
-        root.left = root.right;
-        root.right = temp;   
-        
-        if (root.left != null) {
-            invertTree(root.left);
-        }
-        
-        if (root.right != null) {
-            invertTree(root.right);
-        }
+        TreeNode left = invertTree(root.left);
+        TreeNode right = invertTree(root.right);
+
+        root.left = right;
+        root.right = left;
         
         return root;
     }
