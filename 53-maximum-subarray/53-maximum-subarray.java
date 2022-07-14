@@ -8,11 +8,12 @@ class Solution {
         int sum = 0;
         
         for (int left = 0, right = 0; right < nums.length; right++) {
-            sum += nums[right];
             
-            if (sum < nums[right]) {
+            if ((sum + nums[right]) < nums[right]) {
                 left = right;
                 sum = nums[right];
+            } else {
+                sum += nums[right];
             }
             
             max = Math.max(sum, max);
