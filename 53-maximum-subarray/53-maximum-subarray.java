@@ -4,10 +4,10 @@ class Solution {
             return nums[0];
         }
         
-        int max = Integer.MIN_VALUE;
-        int sum = 0;
+        int max = nums[0];
+        int sum = max;
         
-        for (int left = 0, right = 0; right < nums.length; right++) {
+        for (int left = 0, right = 1; right < nums.length; right++) {
             sum += nums[right];
             
             if (sum < nums[right]) {
