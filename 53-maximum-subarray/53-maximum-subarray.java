@@ -4,19 +4,18 @@ class Solution {
             return nums[0];
         }
         
-        int max = -10000;
+        int max = Integer.MIN_VALUE;
         int sum = 0;
         
         for (int left = 0, right = 0; right < nums.length; right++) {
+            sum += nums[right];
             
-            if ((sum + nums[right]) < nums[right]) {
+            if (sum < nums[right]) {
                 left = right;
                 sum = nums[right];
-            } else {
-                sum += nums[right];
             }
             
-            max = Math.max(sum, max);
+            max = Math.max(max, sum);
         }
         
         return max;
