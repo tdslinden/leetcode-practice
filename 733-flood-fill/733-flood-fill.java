@@ -16,7 +16,7 @@ class Solution {
             int c = sc + directions[i+1];
             
             if (r >= 0 && r < image.length && c >= 0 && c < image[0].length && image[r][c] == target) {
-                image = floodFill(image, r, c, color);
+                floodFill(image, r, c, color);
             }
         }
         
