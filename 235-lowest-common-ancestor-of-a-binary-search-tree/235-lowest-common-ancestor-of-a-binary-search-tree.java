@@ -16,18 +16,6 @@ class Solution {
         
         int mid = root.val;
         
-        if (p.val < mid && q.val > mid) {
-            return root;
-        }
-        
-        if (p.val == mid) {
-            return p;
-        }
-        
-        if (q.val == mid) {
-            return q;
-        }
-        
         if (p.val < mid && q.val < mid) {
             return lowestCommonAncestor(root.left, p, q);
         }
