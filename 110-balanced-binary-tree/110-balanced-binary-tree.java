@@ -14,15 +14,14 @@
  * }
  */
 class Solution {
+    boolean balanced = true;
     public boolean isBalanced(TreeNode root) {
         if (root == null) {
             return true;
         }
         
-        // want to compare the left and right subtree
-        int diff = Math.abs(checkHeight(root.left) - checkHeight(root.right));
-        return isBalanced(root.left) && isBalanced(root.right) && diff <= 1;
-        
+        checkHeight(root);
+        return balanced;
     }
     
     public int checkHeight(TreeNode root) {
@@ -30,6 +29,13 @@ class Solution {
             return 0;
         }
         
-        return Math.max(checkHeight(root.left), checkHeight(root.right)) + 1;
+        int left = checkHeight(root.left) + 1;
+        int right = checkHeight(root.right) + 1;
+        
+        if (Math.abs(left - right) > 1 && balanced) {
+            balanced = false;
+        }
+        
+        return Math.max(left, right);
     }
 }
