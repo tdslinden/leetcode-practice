@@ -1,37 +1,43 @@
 class MyQueue {
-    
-    private Deque<Integer> queued;
-    private Deque<Integer> ready;
-    
+    // when s2 is empty store here
+    ArrayDeque<Integer> s1;
+    ArrayDeque<Integer> s2;
+        
     public MyQueue() {
-        queued = new ArrayDeque<>();
-        ready = new ArrayDeque<>();
+        s1 = new ArrayDeque<>();
+        s2 = new ArrayDeque<>();
     }
     
-    public void push(int x) {        
-        if (ready.size() == 0 && queued.size() == 0) {
-            ready.push(x);
-        } else {
-            queued.push(x);      
-        }
+    public void push(int x) {
+        s1.push(x);
     }
     
     public int pop() {
-        peek();
-        return ready.pop();
+        if (s1.size() == 0 && s2.size() == 0) {
+            return -1;
+        }
+        
+        if (s2.size() == 0) {
+            while (s1.size() != 0) {
+                s2.push(s1.pop());
+            }
+        }
+        
+        return s2.pop();
     }
     
     public int peek() {
-        if (ready.size() == 0 && queued.size() >= 1) {
-            while(queued.peek() != null) {
-                ready.push(queued.pop());
+        if (s2.size() == 0) {
+            while (s1.size() != 0) {
+                s2.push(s1.pop());
             }
-        } 
-        return ready.peek();
+        }
+        
+        return s2.peek();
     }
     
     public boolean empty() {
-        return ready.size() == 0 && queued.size() == 0;
+        return (s1.size() == 0 && s2.size() == 0);
     }
 }
 
