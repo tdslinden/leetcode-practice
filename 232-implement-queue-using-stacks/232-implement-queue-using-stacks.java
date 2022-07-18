@@ -13,10 +13,6 @@ class MyQueue {
     }
     
     public int pop() {
-        if (empty()) {
-            return -1;
-        }
-        
         if (s2.size() == 0) {
             while (s1.size() != 0) {
                 s2.push(s1.pop());
@@ -27,10 +23,6 @@ class MyQueue {
     }
     
     public int peek() {
-        if (empty()) {
-            return -1;
-        }
-        
         if (s2.size() == 0) {
             while (s1.size() != 0) {
                 s2.push(s1.pop());
