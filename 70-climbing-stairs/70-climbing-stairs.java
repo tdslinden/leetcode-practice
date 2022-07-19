@@ -14,6 +14,6 @@ class Solution {
             curr = count;
         }
         
-        return count;
+        return curr;
     }
 }
