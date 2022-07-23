@@ -19,27 +19,9 @@ class Solution {
             return 0;
         }
         
-        Deque<TreeNode> queue = new ArrayDeque<>();
-        queue.offer(root);
-        int level = 0;
+        int left = maxDepth(root.left) + 1;
+        int right = maxDepth(root.right) + 1;
         
-        while(queue.size() != 0) {
-            level++;
-            int size = queue.size();
-            
-            for (int i = 0; i < size; i++) {
-                TreeNode node = queue.poll();
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
-            }
-        }
-        
-        return level;
-
+        return Math.max(left, right);
     }
 }
